@@ -1,0 +1,19 @@
+{
+  "name": "jerte.me",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerte/jerte.me.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jerte/jerte.me/issues"
+  },
+  "homepage": "https://github.com/jerte/jerte.me#readme"
+}
