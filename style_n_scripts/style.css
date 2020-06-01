@@ -1,0 +1,24 @@
+html,body { margin: 0; padding: 0; height:100%;
+}
+.container a { color: inherit; text-decoration: none; }
+.container a:hover { text-decoration: underline; font-weight: bold; }
+.container h2:hover { text-decoration: underline; }
+div>p:hover { text-decoration:underline; }
+.header { color: white;	background: #99badd; padding: 1%; }
+.top { width: 100%; line-height: 20%; }
+nav { width: 100%; background: #99badd; }
+nav table { width: 100%; height: 100%; border-spacing: 1px; }
+nav td { width: 33.3%; padding: 0px; border: solid 3px #99badd; border-radius: 5px;}
+nav div { border-radius: 3px; }
+.background { color: white; background: #0069A9; padding: 2%;
+				height: 100px; }
+.personal { color: white; background: #AF69F0;
+			padding: 2%; height: 100px; }
+.portfolio { color: white; padding: 2%; height: 100px;
+background: #6A6A6A; }
+#contentborder {
+	height: 80%;
+	border: solid #99badd;
+	background: #99badd;
+}
+#content { height:100%; border-radius: 5px;}
