@@ -13,11 +13,10 @@ function renderContent(p) {
 		$("#box td").css("background", $("#" + p).css("background"));
 		$("#box td").css("color", $("#content").css("background-color"));
 		$("#content").css("border-color", $("#" + p).css("background-color"));
-	
 	}
 }
 
-function renderSubContent(c, p) {
+function renderSubContent(c, p, prev) {
 	
 	if([].concat.apply([], Object.values(nav)).includes(p)) {
 		let sc = nav[c];
@@ -34,7 +33,6 @@ function renderSubContent(c, p) {
 		$("#box td").css("color", $("#content").css("background-color"));
 		$("#content").css("border-color", $("#" + c).css("background-color"));
 		$("#" + p).html("<h2>" + p + "</h2>");
-		
 	}
 }
 
@@ -43,6 +41,12 @@ $(document).ready(function() {
 	renderContent("portfolio");
 	let prevContent = null;
 	let currentContent = "portfolio";
+	let pagedata;
+	
+	$.get('/page.json', function(data) {
+		
+		pagedata = data;
+	}); 
 
 	$(".container").mouseover(function(event) {
 		renderContent(event.target.id);	
@@ -55,13 +59,13 @@ $(document).ready(function() {
 				
 			if(prevContent) {
 				$("#" + prevContent).html("<p>" + prevContent + "</p>");
-			}
+			}	
+			renderSubContent(currentContent, event.target.id, prevContent);
+			
+			$("#page").html(pagedata[event.target.id]);
+
 			prevContent = event.target.id;
 	
-			try {
-				renderSubContent(currentContent, event.target.id);
-			} catch (error) {
-			}
 		}		
 	});
 });
