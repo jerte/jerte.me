@@ -17,3 +17,10 @@ html,body { margin: 0; padding: 0; height:100%; background-color: #FFFAFA }
 .content { color: #212121 }
 .fixedLayout { table-layout: fixed }
 .invisibleLink a { color: inherit; text-decoration:none }
+.margin0 { margin:0 }
+.bold { font-weight: bold }
+.project { background-color: #BED6EE; 
+	border-radius: 5px;
+}
+.underline { text-decoration: underline }
+.aboutContent { margin: 50%; border-bottom: 2px solid black; }

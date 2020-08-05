@@ -5,14 +5,16 @@
 			<h1>Josh Thomas</h1>
 			<p>aspiring developer</p></td>
 		<td style="width:50%">
-		<table class="width100 alignCenter" style="table-layout:fixed;">
+		<table class="width100 alignCenter fixedLayout">
 			<tr>
-			<td class="invisibleLink underlineHover blueHover"><h2>
-				<a href="#about">about</a></h2></td>
-			<td class="invisibleLink underlineHover blueHover"><h2>
-				<a href="#portfolio">portfolio</a></h2></td>
-			<td class="invisibleLink underlineHover blueHover"><h2>
-				<a href="#contact">contact</a></h2></td>
+			<% nav.forEach(function(i) { %>
+			<% if( i==cur ) { %>
+				<td class="underline invisibleLink underlineHover blueHover"><h2>
+					<a href=<%= i %>><%= i %></a></h2></td>
+			<% } else { %>
+				<td class="invisibleLink underlineHover blueHover"><h2>
+					<a href=<%= i %>><%= i %></a></h2></td>
+			<% }}); %>
 		</tr></table>
 </table></div>
 <hr class="thickhr">

@@ -5,10 +5,11 @@ var favicon = require('serve-favicon')
 
 var app = express()
 
+var nav = ['home', 'about', 'portfolio', 'contact']
 var courses = ['Algorithms and Analysis', 'Artificial Intelligence',
                 'Data Stuctures', 'Computer Organization',
                 'Foundation of Progamming', 'Internet Services and Protocols',
-                'Linear Algerba for Application', 'Mentored Research',
+                'Linear Algebra for Application', 'Mentored Research',
                 'Modern Web Progamming', 'Wireless and Mobile Communications']
 
 var languages = ['Python', 'Javascript/NodeJS', 'Java', 'C']
@@ -26,11 +27,31 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 app.use(favicon(path.join(__dirname, 'favicon/favicon.ico')))
+
 app.get('/', (req,res) => { 
 	res.render('pages/index', 
-		{courses: courses, languages: languages, 
+		{cur: 'home', nav: nav, courses: courses, languages: languages, 
 		 os_s: os_s, soft_skills: soft_skills, interests: interests});
 })
+
+app.get('/home', (req, res) => { res.redirect('/')});
+
+app.get('/about', (req,res) => { 
+	res.render('pages/about', 
+		{cur: 'about', nav: nav, courses: courses, languages: languages, 
+		 os_s: os_s, soft_skills: soft_skills, interests: interests});
+})
+app.get('/portfolio', (req,res) => { 
+	res.render('pages/portfolio', 
+		{cur: 'portfolio', nav: nav, courses: courses, languages: languages, 
+		 os_s: os_s, soft_skills: soft_skills, interests: interests});
+})
+app.get('/contact', (req,res) => { 
+	res.render('pages/contact', 
+		{cur: 'contact', nav: nav, courses: courses, languages: languages, 
+		 os_s: os_s, soft_skills: soft_skills, interests: interests});
+})
+
 
 app.use(express.static(path.join(__dirname, 'static')))
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
