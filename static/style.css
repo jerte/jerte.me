@@ -1,4 +1,4 @@
-html,body { margin: 0; padding: 0; height:100%; background-color: #FFFAFA }
+html,body { margin: 0; padding: 0; height:100%; background-color: #F4F5F6 }
 .header { color: #415B84; padding-top:1%; padding-left:1%; padding-right:1%;  }
 .top { width: 100%; line-height: 20%; }
 
@@ -24,3 +24,16 @@ html,body { margin: 0; padding: 0; height:100%; background-color: #FFFAFA }
 }
 .underline { text-decoration: underline }
 .aboutContent { margin: 50%; border-bottom: 2px solid black; }
+#git:hover { cursor: pointer; }
+#footer {
+	border-top: solid #415B84 10px;
+	background-color: #212121;
+}
+#header-bottom {
+	border-top: solid #212121 10px;
+	border-bottom: solid #415B84 5px;
+	
+}
+.width50 { width: 50% }
+.width70 { width: 70% }
+.autoMargin { margin:auto }

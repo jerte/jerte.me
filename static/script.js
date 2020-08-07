@@ -27,7 +27,6 @@ function quicksort_dates(arr, low, high) {
 
 $(document).ready(function() {
 	$.get("https://api.github.com/users/jerte/repos", function(data) {
-		console.log(data);
 		var repos = []
 		data.forEach(function(i) {
 			repos.push([new Date(i['pushed_at']), i['name'], i['html_url'], 
@@ -37,12 +36,25 @@ $(document).ready(function() {
 		quicksort_dates(repos, 0, repos.length-1);
 		
 		var git_html = "";
-		for(var i=0; i<5; i++) {
-			git_html += "<td class=\"project invisibleLink underlineHover\"><a href=\"" + 
-						repos[i][2]+ "\">" + repos[i][1] + "</a>" + 
+		var i;
+		for(i=0; i<repos.length; i++) {
+			if( i % 4==0 ) {
+				git_html += "<tr><td class=\"project invisibleLink underlineHover\"><a href=\"" + 
+						repos[i][2]+ "\">" + repos[i][1] + 
 						"<p class=\"margin0\">(" + repos[i][3] + ")</p></td>";
+
+			} else {
+				git_html += "<td class=\"project invisibleLink underlineHover\"><a href=\"" + 
+						repos[i][2]+ "\">" + repos[i][1] + 
+						"<p class=\"margin0\">(" + repos[i][3] + ")</p></td>";
+			}
 		}
 		$("#git").html(git_html);
-		console.log(repos.slice(0,5));
 	});
+
+	$("#git").click(function() {
+		window.location = $(this).find('a').attr('href');
+	});
+		
+	
 });
