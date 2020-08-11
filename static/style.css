@@ -37,3 +37,9 @@ html,body { margin: 0; padding: 0; height:100%; background-color: #F4F5F6 }
 .width50 { width: 50% }
 .width70 { width: 70% }
 .autoMargin { margin:auto }
+
+.nav-link-custom { color: #212121; }
+.nav-link-custom:hover { text-decoration: underline; color: #99BFE5; }
+
+.marginBottom0 { margin-bottom: 0; }
+.menu-button { background-image: menu-button.jpg; }
