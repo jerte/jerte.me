@@ -7,16 +7,16 @@ var app = express()
 
 var nav = ['home', 'about', 'portfolio', 'contact']
 var courses = ['Algorithms and Analysis', 'Artificial Intelligence',
-                'Data Stuctures', 'Computer Organization',
+                'Computer Organization', 'Data Structures', 'Differential Equations',
                 'Foundation of Progamming', 'Internet Services and Protocols',
                 'Linear Algebra for Application', 'Mentored Research',
                 'Modern Web Progamming', 'Wireless and Mobile Communications']
 
-var languages = ['Python', 'Javascript/NodeJS', 'Java', 'C']
-var os_s = ['MacOS Catalina', 'Unix/Linux (Ubuntu, Arch)']
-var soft_skills = ['Communication/Customer Service', 'Work Ethic',
-				   'Leadership/Teamwork', 'Initiative/Drive',
-				   'Honesty/Accountability']
+var languages = ['Python', 'Javascript/NodeJS', 'Java', 'C++']
+var os_s = ['MacOS Catalina', 'Linux (Ubuntu, Arch)']
+var soft_skills = ['Communication', 'Work Ethic', 'Customer Service',
+				   'Leadership', 'Teamwork', 'Initiative/Drive',
+				   'Honesty', 'Accountability']
 var interests = ['coding!', 'jiu jitsu', 'weightlifting', 'cooking',
 				 'music', 'bitcoin']
 
