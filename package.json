@@ -23,6 +23,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "jquery": "^3.5.1",
+    "pg": "^8.3.2",
     "serve-favicon": "^2.5.0"
   }
 }

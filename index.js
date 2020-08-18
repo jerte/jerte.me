@@ -2,23 +2,16 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 var favicon = require('serve-favicon')
+const { Pool } = require('pg')
+
+const pool = new Pool({
+	connectionString: process.env.DATABASE_URL,
+	ssl: {
+		rejectUnauthorized: false
+	}
+})
 
 var app = express()
-
-var nav = ['home', 'about', 'portfolio', 'contact']
-var courses = ['Algorithms and Analysis', 'Artificial Intelligence',
-                'Computer Organization', 'Data Structures', 'Differential Equations',
-                'Foundation of Progamming', 'Internet Services and Protocols',
-                'Linear Algebra for Application', 'Mentored Research',
-                'Modern Web Progamming', 'Wireless and Mobile Communications']
-
-var languages = ['Python', 'Javascript/NodeJS', 'Java', 'C++']
-var os_s = ['MacOS Catalina', 'Linux (Ubuntu, Arch)']
-var soft_skills = ['Communication', 'Work Ethic', 'Customer Service',
-				   'Leadership', 'Teamwork', 'Initiative/Drive',
-				   'Honesty', 'Accountability']
-var interests = ['coding!', 'jiu jitsu', 'weightlifting', 'cooking',
-				 'music', 'bitcoin']
 
 app.use(express.static(path.join(__dirname, '/node_modules/jquery/dist/')))
 app.use(express.static(path.join(__dirname, '/node_modules/ejs/')))
@@ -27,31 +20,39 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 app.use(favicon(path.join(__dirname, 'favicon/favicon.ico')))
-
-app.get('/', (req,res) => { 
-	res.render('pages/index', 
-		{cur: 'home', nav: nav, courses: courses, languages: languages, 
-		 os_s: os_s, soft_skills: soft_skills, interests: interests});
-})
+app.use(express.static(path.join(__dirname, 'static')))
 
 app.get('/home', (req, res) => { res.redirect('/')});
 
-app.get('/about', (req,res) => { 
-	res.render('pages/about', 
-		{cur: 'about', nav: nav, courses: courses, languages: languages, 
-		 os_s: os_s, soft_skills: soft_skills, interests: interests});
-})
-app.get('/portfolio', (req,res) => { 
-	res.render('pages/portfolio', 
-		{cur: 'portfolio', nav: nav, courses: courses, languages: languages, 
-		 os_s: os_s, soft_skills: soft_skills, interests: interests});
-})
-app.get('/contact', (req,res) => { 
-	res.render('pages/contact', 
-		{cur: 'contact', nav: nav, courses: courses, languages: languages, 
-		 os_s: os_s, soft_skills: soft_skills, interests: interests});
+app.get('/:page?', async (req, res) => {
+	try {
+		const client = await pool.connect();
+		const site_data_names = await client.query('SELECT * FROM site_data_names');
+		
+		var site_data_ids = {};
+		for(var i=0; i < site_data_names.rows.length; i++) {
+			site_data_ids[site_data_names.rows[i]['name']] = site_data_names.rows[i]['id'];
+		}
+
+		var query_results = {};
+		for(var key in site_data_ids) {
+			const query_ = await client.query('SELECT * FROM site_data WHERE SITE_ID=' + 
+							 site_data_ids[key]);
+			query_results[key] = query_.rows.map(x => x['name']);
+		}
+		
+		if(!req.params.page) {
+			req.params.page = "home";
+		}
+		res.render('pages/base', { cur: req.params['page'], nav: query_results['pages'], 
+								   courses: query_results['courses'], languages: query_results['languages'],
+								   os_s: query_results['os'], soft_skills: query_results['soft skills'],
+								   interests: query_results['interests']});
+		client.release();
+
+	} catch (err) {
+		res.send("Sorry, an error occured. Try again in a few moments.");
+	}
 })
 
-
-app.use(express.static(path.join(__dirname, 'static')))
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
