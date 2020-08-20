@@ -44,4 +44,4 @@ html,body { margin: 0; padding: 0; height:100%; background-color: #F4F5F6 }
 .marginBottom0 { margin-bottom: 0; }
 .menu-button { background-image: menu-button.jpg; }
 .padding2 { padding: 2% }
-.test { color: red }
+.liveinterest { text-decoration: underline; }

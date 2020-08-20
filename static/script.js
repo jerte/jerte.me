@@ -1,4 +1,3 @@
-
 function partition(arr, low, high) {
 	var pivot = arr[high][0];
 	var i = low - 1;
@@ -27,6 +26,7 @@ function quicksort_dates(arr, low, high) {
 
 
 $(document).ready(function() {
+	console.log("loaded");
 	$.get("https://api.github.com/users/jerte/repos", function(data) {
 		var repos = []
 		data.forEach(function(i) {
@@ -37,17 +37,15 @@ $(document).ready(function() {
 		quicksort_dates(repos, 0, repos.length-1);
 		
 		var git_html = "";
-		var git1_html = "<div class=\"row\">";
+		var git_html = "<div class=\"row\">";
 		for(var i=0; i<repos.length; i++) {
-			console.log(i);
 			if( i % 3==0 && i!=0 ) {
-				console.log(repos[i][1]);
-				git1_html += "</div><br><div class=\"row\"><div class=\"col-4\">" + 
+				git_html += "</div><br><div class=\"row\"><div class=\"col-4\">" + 
 							 "<div class=\"col-12 project padding2 invisibleLink underlineHover\">" +
 							 "<a href=\"" + repos[i][2] + "\">" + repos[i][1] + 
 							 "<p class=\"margin0\">(" + repos[i][3] + ")</p></a></div></div>";
 			} else {
-				git1_html += "<div class=\"col-4\">" + 
+				git_html += "<div class=\"col-4\">" + 
 							"<div class=\"padding2 col-12 project invisibleLink underlineHover\">" +
 								"<a href=\"" + repos[i][2] + "\">" + 
 								repos[i][1] + "<p class=\"margin0\">(" + 
@@ -55,15 +53,13 @@ $(document).ready(function() {
 			}
 		}
 		if(repos.length % 4 ==0) {
-			git1_html += "</div";
+			git_html += "</div";
 		}
-		console.log(git1_html);
-		$("#git1").html(git1_html);
+		$("#git").html(git_html);
 	});
 
 	$("#git").click(function() {
 		window.location = $(this).find('a').attr('href');
 	});
-		
-	
+
 });

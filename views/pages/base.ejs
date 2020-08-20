@@ -8,18 +8,23 @@
 		
 	<link rel="stylesheet" href="style.css" type="text/css">
 	<script src="ejs.js"></script>
-  	
+	<script src="script.js"></script>  	
   </head>
 
   <body>
 	
-	<% if(locals.cur && nav.includes(cur)) { %>
-		<%- include('../partials/header.ejs') %>
-		<%- include('../partials/' + cur + '.ejs') %>
-		<%- include('../partials/footer.ejs') %>
-  	<% } else { %>
-		<%- include('404.ejs') %>
-	<% } %>
+		<% if(nav.map(x=>x['name']).includes(page)) { %>
+		
+			<%- include('../partials/header.ejs') %>
+			<%- include('../partials/' + page + '.ejs') %>	
+			<% if ( subpage ) { %>
+				<%- include('../partials/' + page + '/' + subpage + '.ejs') %>
+			<% } %>
+			<%- include('../partials/footer.ejs') %>
+  	
+		<% } else { %>
+			<%- include('404.ejs') %>
+		<% } %>
 
   </body>
 

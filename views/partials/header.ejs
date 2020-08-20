@@ -11,12 +11,15 @@
 	<div class="collapse navbar-collapse" id="navbarContent">
 		<ul class="nav navbar-nav ml-auto">
 			<% nav.forEach(function(i) { %>
-				<% if( i==cur ) { %>
-					<li class="nav-link">
-						<a class="nav-link nav-link-custom underline" href=<%= i %>><h4><%= i %></h4></a></li>
-				<% } else { %>
-					<li class="nav-link">
-						<a class="nav-link nav-link-custom" href=<%= i %>><h4><%= i %></h4></a></li>
+				<% if( i['has_link'] ) { %>	
+					<% i = i['name']; %>
+					<% if( i==page ) { %>
+						<li class="nav-link">
+							<a class="nav-link nav-link-custom underline" href=<%= i %>><h4><%= i %></h4></a></li>
+					<% } else { %>
+						<li class="nav-link">
+							<a class="nav-link nav-link-custom" href=<%= i %>><h4><%= i %></h4></a></li>
+					<% } %>
 				<% } %>
 			<% }); %>
 			</ul>

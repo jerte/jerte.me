@@ -1,0 +1,19 @@
+<div id="interests" class="content alignCenter container-fluid">
+	<br>
+	<h1>interests</h1>
+	<hr width="40%">
+	<div class="row">
+		<% for(var i=0; i<interests.length; i++) { %>
+			<% if(interests[i]['has_link']) { %>
+				<div class="col-md-4 col-sm-6 invisibleLink interest" id=<%= interests[i]['name'] %>>
+				<a href="interests-<%= interests[i]['name'] %>">
+				<p class="padding2 underlineHover project">
+				<%= interests[i]['name'] %></p></a></div>		
+			<% } else { %>
+				<div class="col-md-4 col-sm-6">
+				<p class="padding2 underlineHover project">
+				<%= interests[i]['name'] %></p></div>
+			<% } %>
+		<% } %>
+    </div>
+</div>
