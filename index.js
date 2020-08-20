@@ -4,10 +4,8 @@ const PORT = process.env.PORT || 5000
 var favicon = require('serve-favicon')
 const { Pool } = require('pg')
 
-var cstr = "postgres://vsmzwwnnyeplpx:52669f2aafbb96f9aaafd1765aaa2efc9abf865759cda6fcb56f232b8e9b4e3c@ec2-52-200-111-186.compute-1.amazonaws.com:5432/d5ln71rrf89gk6"
-
 const pool = new Pool({
-	connectionString: cstr,
+	connectionString: process.env.DATABASE_URL,
 	ssl: {
 		rejectUnauthorized: false
 	}
