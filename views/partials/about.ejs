@@ -13,9 +13,9 @@
 	<br><p class="bold alignCenter">Coursework</p><hr width="20%">
 	  <div class="container-fluid">
 	  	<div class="row">
-		<% for(var i=0; i<courses.length; i++) { %>
+		<% for(var i=0; i<data['courses'].length; i++) { %>
 			<div class="col-sm-6 col-md-4">
-			  <p class="padding2 project underlineHover"><%= courses[i]['name'] %></p></div>
+			  <p class="padding2 project underlineHover"><%= data['courses'][i]['name'] %></p></div>
 		<% } %>
 		</div>
 	  </div>
@@ -29,10 +29,10 @@
 	<div class="row">
 	  <div class="col-12 project">	
 	    <p class="margin0 padding2"><span class="bold">Languages: </span>
-		  <% for(var i=0; i<languages.length-1; i++) { %>
-			<%= languages[i]['name'] %>,
+		  <% for(var i=0; i<data['languages'].length-1; i++) { %>
+			<%= data['languages'][i]['name'] %>,
 		 <% }; %>
-		<%= languages[languages.length-1]['name'] %>
+		<%= data['languages'][data['languages'].length-1]['name'] %>
 		</p>
 		</div>
 	</div>
@@ -42,39 +42,42 @@
 	<div class="row">
 	  <div class="col-12 project">
 	  	<p class="margin0 padding2"><span class="bold">Operating Systems: </span>
-			<% for(var i=0; i<os_s.length-1; i++) { %>
-				<%= os_s[i]['name'] %>,
+			<% for(var i=0; i<data['os'].length-1; i++) { %>
+				<%= data['os'][i]['name'] %>,
 			<% }; %>
-			<%= os_s[os_s.length-1]['name'] %>
+			<%= data['os'][data['os'].length-1]['name'] %>
 		</p></div>
 	</div>
 
 	<div style="line-height: 50%"><br></div>
 	<p class="alignCenter bold">Soft Skills</p><hr width="20%">
 	<div class="row">
-		<% for(var i=0; i<soft_skills.length; i++) { %>
+		<% for(var i=0; i<data['soft_skills'].length; i++) { %>
 			<div class="col-6 col-md-4">
-			  <p class="padding2 project"><%= soft_skills[i]['name'] %></p></div>
+			  <p class="padding2 project"><%= data['soft_skills'][i]['name'] %></p></div>
 		<% } %>
 	</div></div>
 
 	
 	<hr width="30%">
 	<hr width="25%">
-		
-	<h2>interests</h2><hr width="35%">
+	<div class="invisibleLink blueHover underline">
+		<a href="/interests" class="invisibleLink">
+			<h2>interests</h2>
+		</a></div>
+	<hr width="35%">
 		  <div class="container-fluid">
 		  	<div class="row">
-		  	<% for(var i=0; i<interests.length; i++) { %>
-				<% if(interests[i]['has_link']) { %>
-					<div class="col-md-4 col-sm-6 invisibleLink interest" id=<%= interests[i]['name'] %>>
-				    <a href="/interests-<%= interests[i]['name'] %>">	
+		  	<% for(var i=0; i<data['interests'].length; i++) { %>
+				<% if(data['interests'][i]['has_link']) { %>
+					<div class="col-md-4 col-sm-6 invisibleLink interest" id=<%= data['interests'][i]['name'] %>>
+				    <a href="/interests/<%= data['interests'][i]['name'] %>">	
 					<p class="padding2 underlineHover project">
-					<%= interests[i]['name'] %></p></a></div>
+					<%= data['interests'][i]['name'] %></p></a></div>
 				<% } else { %>
 					<div class="col-md-4 col-sm-6">
 					<p class="padding2 underlineHover project">
-					<%= interests[i]['name'] %></p></div>
+					<%= data['interests'][i]['name'] %></p></div>
 				<% } %>
 			<% } %>
 		  </div>

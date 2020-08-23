@@ -7,53 +7,28 @@
 
 	<div class="container-fluid">
 	<div class="row">
-		<div class="col-lg-4"><div class="col-lg-12 project">
-		<p class="bold padding2">Using Machine Learning to Classify Parkinson’s Patients
-                            as Cognitively Stable</p>
-		<p>Research project using machine learning in Python.
-                                Created three machine learning models using 
-                                preprocessed MRI data from Parkinson’s Disease
-                                patients and controls. Models predicted whether a
-                                given patient would undergo cognitive decline for the
-                                purpose of identifying brain regions responsible
-                                for decline.</p>
-		<p class="padding2">Python, Machine Learning</p>
+		<% for(var i=0; i<data['project_names'].length; i++) { %>
+		<div class="col-lg-4"><div class="project">
+			<p class="bold padding2"><%= data['project_names'][i]['name'] %></p>
+			<p><%= data['project_info'].filter(x => x['has_link']==data['project_names'][i]['has_link'])[0]['name'] %></p>
+			<p class="padding2">
+				<%= data['project_tech'].filter(x => x['has_link']==data['project_names'][i]['has_link'])[0]['name'] %>
+			</p>
 		</div></div>
-		<div class="col-lg-4"><div class="col-lg-12 project">
-			<p class="bold padding2">Replicating SignFi in Python</p>
-			<p>Semester long class project that used
-                            open data to replicate the results of the SignFi
-                            research paper in Python. Created a machine learning
-                            model and convolutional neural network to identify
-                            up to 276 sign language gestures from fluctuations in
-                            wireless signals.</p>
-			<p class="padding2">Python, Machine Learning</p>
-		</div></div>
-		<div class="col-lg-4"><div class="col-lg-12 project">
-			<p class="bold padding2">Spotify with Friends</p>
-			<p>Semester long group project that created a
-                        website in JavaScript. Using a wrapper for Spotify API,
-                        the site replicated the functionality of the Spotify
-                        web app while adding an updatable timeline feature.</p>
-            <p class="padding2">Javascript/NodeJS, HTML, CSS.</p>
-		</div></div>
-	</div></div>
+		<% } %>
+	</div>
 	
 	<hr width="30%">
 	<hr width="25%">
 	
 	
-	<div class="invisibleLink blueHover underlineHover">
+	<div class="invisibleLink blueHover underline">
 		<a href="https://www.github.com/jerte" class="invisibleLink"><h2>github</h2></a>
 	</div>
 	<hr width="35%">
 	<p class="bold">Repositories: </p>
-	<div id="git1"></div>
-	<table class=" width100 fixedLayout">
-		<tr><td>
-			<table class="width100 fixedLayout" id="git"></table>
-		</tr>
-	</table>
+	<hr width="20%">
+	<div id="git"></div>
 	<hr width="30%">
 	<hr width="25%">
 

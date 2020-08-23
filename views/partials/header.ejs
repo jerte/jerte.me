@@ -1,24 +1,25 @@
-<nav class="navbar navbar-expand-md container-fluid">
-	
-	<div class="navbar-brand">
+<nav class="h-10 navbar navbar-expand-md container-fluid">
+		
+	<div class="navbar-brand invisibleLink">
+		<a href="/">
 		<h1 class="marginBottom0">Josh Thomas</h1>
-		<p class="margin0">aspiring developer</p></div>
+		<p class="margin0">aspiring developer</p></a></div>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
 		aria-controls="navbar-content" aria-expanded="false" aria-label="toggle nav">
-		<span class="navbar-toggler-icon"><img src="menu.png"></span>
+		<span class="navbar-toggler-icon"><img src="/menu.png"></span>
 	</button>
 
 	<div class="collapse navbar-collapse" id="navbarContent">
 		<ul class="nav navbar-nav ml-auto">
-			<% nav.forEach(function(i) { %>
+			<% data['pages'].forEach(function(i) { %>
 				<% if( i['has_link'] ) { %>	
 					<% i = i['name']; %>
 					<% if( i==page ) { %>
 						<li class="nav-link">
-							<a class="nav-link nav-link-custom underline" href=<%= i %>><h4><%= i %></h4></a></li>
+							<a class="nav-link nav-link-custom underline" href="/<%= i %>"><h4><%= i %></h4></a></li>
 					<% } else { %>
 						<li class="nav-link">
-							<a class="nav-link nav-link-custom" href=<%= i %>><h4><%= i %></h4></a></li>
+							<a class="nav-link nav-link-custom" href="/<%= i %>"><h4><%= i %></h4></a></li>
 					<% } %>
 				<% } %>
 			<% }); %>

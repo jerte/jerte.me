@@ -39,21 +39,11 @@ $(document).ready(function() {
 		var git_html = "";
 		var git_html = "<div class=\"row\">";
 		for(var i=0; i<repos.length; i++) {
-			if( i % 3==0 && i!=0 ) {
-				git_html += "</div><br><div class=\"row\"><div class=\"col-4\">" + 
-							 "<div class=\"col-12 project padding2 invisibleLink underlineHover\">" +
-							 "<a href=\"" + repos[i][2] + "\">" + repos[i][1] + 
-							 "<p class=\"margin0\">(" + repos[i][3] + ")</p></a></div></div>";
-			} else {
-				git_html += "<div class=\"col-4\">" + 
-							"<div class=\"padding2 col-12 project invisibleLink underlineHover\">" +
+				git_html += "<div class=\"col-lg-3 col-md-4 col-6 padding2\">" + 
+							"<div class=\"col-12 project invisibleLink underlineHover\">" +
 								"<a href=\"" + repos[i][2] + "\">" + 
 								repos[i][1] + "<p class=\"margin0\">(" + 
 								repos[i][3] + ")</p></a></div></div>";
-			}
-		}
-		if(repos.length % 4 ==0) {
-			git_html += "</div";
 		}
 		$("#git").html(git_html);
 	});

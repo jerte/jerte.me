@@ -24,42 +24,34 @@ app.use(express.static(path.join(__dirname, 'static')))
 
 app.get('/home', (req, res) => { res.redirect('/')});
 
-app.get('/:page?', async (req, res) => {
+app.get('/:page?/:subpage?', async (req, res) => {
 
-	var subpage;
+	var data = {};
+
 	try {
 		const client = await pool.connect();
-		const site_data_names = await client.query('SELECT * FROM site_data_names');
+		const pages = await client.query('SELECT * FROM PAGES');
 		
-		var site_data_ids = {};
-		for(var i=0; i < site_data_names.rows.length; i++) {
-			site_data_ids[site_data_names.rows[i]['name']] = site_data_names.rows[i]['id'];
-		}
-
-		var query_results = {};
-		for(var key in site_data_ids) {
-			const query_ = await client.query('SELECT * FROM site_data WHERE SITE_ID=' + 
-							 site_data_ids[key]);
-			query_results[key] = query_.rows;
-		}
+		console.log(pages.rows);
 
 		if(!req.params.page) {
 			req.params.page = "home";
-		} else if( req.params.page.includes('-') ) {
-			var index = req.params.page.indexOf('-');
-			
-			subpage = req.params.page.substring(index+1);
-			req.params.page = req.params.page.substring(0, index);
 		}
-
-		res.render('pages/base', { page: req.params['page'], nav: query_results['pages'],  
-								   courses: query_results['courses'], languages: query_results['languages'],
-								   os_s: query_results['os'], soft_skills: query_results['soft skills'],
-								   interests: query_results['interests'], subpage: subpage});
+		
+		var page_index = pages.rows.map(x => x['name'] ).indexOf(req.params.page);	
+		for (var d_req of pages.rows[page_index]['data_req'].split(" ") ) {
+			const q = await client.query('select * from site_data where site_id=(select id from site_data_names where name=\'' + d_req + '\')');
+			
+			data[d_req] = q.rows;
+			
+		}
+		
+		console.log(data);
+		res.render('pages/base', { page: req.params.page, subpage: req.params.subpage, data: data });
 		client.release();
 
 	} catch (err) {
-		res.send("Sorry, an error occured. Try again in a few moments.");
+		res.send(err.message);
 	}
 })
 
