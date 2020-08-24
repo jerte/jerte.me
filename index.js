@@ -38,16 +38,22 @@ app.get('/:page?/:subpage?', async (req, res) => {
 			req.params.page = "home";
 		}
 		
-		var page_index = pages.rows.map(x => x['name'] ).indexOf(req.params.page);	
-		for (var d_req of pages.rows[page_index]['data_req'].split(" ") ) {
-			const q = await client.query('select * from site_data where site_id=(select id from site_data_names where name=\'' + d_req + '\')');
-			
-			data[d_req] = q.rows;
-			
-		}
 		
-		console.log(data);
-		res.render('pages/base', { page: req.params.page, subpage: req.params.subpage, data: data });
+		var page_index = pages.rows.map(x => x['name'] ).indexOf(req.params.page);	
+		if(page_index >= 0) {
+		
+			for (var d_req of pages.rows[page_index]['data_req'].split(" ") ) {
+				const q = await client.query(
+						  'select * from site_data where site_id=' + 
+						  '(select id from site_data_names where name=\'' + d_req + '\')');
+				data[d_req] = q.rows;
+			}
+		
+			res.render('pages/base', 
+				{ page: req.params.page, subpage: req.params.subpage, data: data });
+		} else {
+			res.render('pages/404');
+		}
 		client.release();
 
 	} catch (err) {

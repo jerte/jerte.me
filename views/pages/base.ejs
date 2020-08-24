@@ -13,24 +13,28 @@
 
   <body>
 
-		<% if ( data['pages'].map(x => x['name']).includes(page) ) { %>
-		
-			<%- include('../partials/header.ejs') %>
-			<div class="h-65">
-			<%- include('../partials/' + page + '.ejs') %>	
-			
-			<% if ( subpage && data['pages'].map(x=>x['name']).includes(page + '/' + subpage) ) { %>
+		<%- include('../partials/header.ejs') %>
+		<div class="h-65">
+
+		<% if ( subpage ) { %>
+			<% if( data['pages'].map(x=>x['name']).includes(page + '/' + subpage) ) { %>
+				
+				<%- include('../partials/' + page + '.ejs') %>	
 				<hr width="30%"><hr width="25%">
 				<%- include('../partials/' + page + '/' + subpage + '.ejs') %>
 				<hr width="30%"><hr width="25%">
+			<% } else { %>
+				<%- include('404.ejs') %>
 			<% } %>
-			</div>
-			<%- include('../partials/footer.ejs') %>
+		<% } else if ( data['pages'].map(x => x['name']).includes(page) ) { %>
+		
+			<%- include('../partials/' + page + '.ejs') %>	
   	
 		<% } else { %>
 			<%- include('404.ejs') %>
 		<% } %>
-
+		</div>
+		<%- include('../partials/footer.ejs') %>
   </body>
 
 </html>
