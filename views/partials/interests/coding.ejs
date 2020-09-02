@@ -1,10 +1,18 @@
 <div class="container-fluid">
 	<div class="padding2 project">
-
 	<div class="row">
-		<div class="col-12">
-		<p>things to add:</p></div>
-		<div class="col-12">
+	<% for ( var i of data['coding_topics'] ) { %>
+		<div class="col-3 interest-topic my-auto" id="<%=i['name']%>"><span><%= i['name'] %></span></div>
+	<% } %>
+
+	<% if(admin) { %>
+		<div class="col-3 interest-topic my-auto" id="add-topic"><span>add topic</span></div>
+	<% } %>
+	</div>
+	<%= //var index = data['coding_topics'].map(x=>x['name']).indexOf(topic) %>
+	<div class="row">
+		<div class="col-12" id="interest-topic-content">
+			<p>things to add</p>
 			<ul class="w-50">
 				<li>vim notes</li>
 				<li>emacs notes</li>

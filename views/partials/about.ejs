@@ -72,13 +72,17 @@
 				<% if(data['interests'][i]['has_link']) { %>
 					<div class="col-md-4 col-sm-6 invisibleLink interest" id=<%= data['interests'][i]['name'] %>>
 				    <a href="/interests/<%= data['interests'][i]['name'] %>">	
-					<p class="padding2 underlineHover project">
+					<p class="padding2 underline project">
 					<%= data['interests'][i]['name'] %></p></a></div>
 				<% } else { %>
 					<div class="col-md-4 col-sm-6">
 					<p class="padding2 underlineHover project">
 					<%= data['interests'][i]['name'] %></p></div>
 				<% } %>
+			<% } %>
+			<% if(admin) { %>
+				<div class="col-md-4 col-sm-6 invisibleLink interest" id="add_interest">
+				<p class="padding2 project">add interest</p></div>
 			<% } %>
 		  </div>
 	</div>

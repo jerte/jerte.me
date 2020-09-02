@@ -19,6 +19,7 @@
   "homepage": "https://github.com/jerte/jerte.me#readme",
   "dependencies": {
     "ajax": "0.0.4",
+    "body-parser": "^1.19.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "fs": "0.0.1-security",

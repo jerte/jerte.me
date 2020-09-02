@@ -11,9 +11,9 @@
 				<div class="col-md-4 col-sm-6 invisibleLink interest" id=<%= data['interests'][i]['name'] %>>
 				<a href="/interests/<%= data['interests'][i]['name'] %>">
 				<% if(subpage == data['interests'][i]['name']) { %>
-					<p class="padding2 underlineHover project underline">
+					<p class="padding2 underline bold project underline">
 				<% } else { %>	
-					<p class="padding2 underlineHover project">
+					<p class="padding2 underline project">
 				<% } %>
 				<%= data['interests'][i]['name'] %></p></a></div>
 
@@ -23,6 +23,11 @@
 				<%= data['interests'][i]['name'] %></p></div>
 			<% } %>
 		<% } %>
+		<% if(admin) { %>
+			<div class="col-md-4 col-sm-6 invisibleLink interest" id="add_interest">
+			<p class="padding2 project">add interest</p></div>
+		<% } %>
+
 	</div>
 
 	<% if( !subpage ) { %>
@@ -30,7 +35,7 @@
 		<hr width="25%">
 		<div class="row">
 			<div class="col-12"><p class="padding2 project">
-				click on an interest to see more information</p>
+				click on an underlined interest to see more information</p>
 			</div>
 		</div>
 		<hr width="30%"><hr width="25%">
