@@ -84,7 +84,7 @@ $(document).ready(function() {
 		} else if($("#add-topic span").html()) {
 			console.log('text');
 			$("#add-topic").html(
-				"<form id=\"add-topic-form\"><input type=\"text\" id=\"new_topic"><input type=\"submit\"></form>");
+				"<form id=\"add-topic-form\"><input type=\"text\" id=\"new_topic\"><input type=\"submit\"></form>");
 			
 			$("#add-topic-form").submit(function(e) { 
 				$.post("/admin/add-interest-topic", { topic: $("#new_topic").val(), location: window.location}, 

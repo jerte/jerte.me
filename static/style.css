@@ -28,6 +28,7 @@ html,body { margin: 0; padding: 0; height:100%; background-color: #F4F5F6 }
 #footer {
 	border-top: solid #415B84 10px;
 	background-color: #212121;
+	color: #212121;
 }
 #header-bottom {
 	border-top: solid #212121 10px;
@@ -36,6 +37,8 @@ html,body { margin: 0; padding: 0; height:100%; background-color: #F4F5F6 }
 }
 .width50 { width: 50% }
 .width70 { width: 70% }
+.whiteText * { color: #F4F5F6; }
+
 .autoMargin { margin:auto }
 
 .nav-link-custom { color: #212121; }

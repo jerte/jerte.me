@@ -1,9 +1,6 @@
 <div class="container-fluid">
 	<div class="padding2 project">
 	<div class="row">
-	<% for ( var i of data['coding_topics'] ) { %>
-		<div class="col-3 interest-topic my-auto" id="<%=i['name']%>"><span><%= i['name'] %></span></div>
-	<% } %>
 
 	<% if(admin) { %>
 		<div class="col-3 interest-topic my-auto" id="add-topic"><span>add topic</span></div>
